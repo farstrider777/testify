@@ -31,10 +31,11 @@ function GildedRose (sellIn, quality, name) {
 }
 
 GildedRose.prototype.tick = function () {
-
-  this.quality += this.degradationRate;
-  if(this.sellIn <= 0){
+  if(this.quality !== this.minMaxQuality ){
     this.quality += this.degradationRate;
+    if(this.sellIn <= 0){
+      this.quality += this.degradationRate;
+    }
   }
   this.sellIn += this.sellbyRate;
 
