@@ -4,39 +4,41 @@ function GildedRose (sellIn, quality, name) {
   this.quality = quality;
   if(this.name === 'normal'){
     this.degradationRate = -1;
-    this.minMaxQuality = 0;
+    this.minQuality = 0;
     this.sellbyRate = -1;
   }
   if(this.name === 'Aged Brie'){
     this.degradationRate = +1;
-    this.minMaxQuality = 50;
+    this.maxQuality = 50;
     this.sellbyRate = -1;
   }
   if(this.name === 'Sulfuras, Hand of Ragnaros'){
     this.degradationRate = 0;
-    this.minMaxQuality = 80;
+    this.minQuality = 80;
+    this.maxQuality = 80;
     this.sellbyRate = 0;
   }
   if(this.name === 'Backstage passes to a TAFKAL80ETC concert'){
     this.degradationRate = +1;
     this.expiredDegradationValue = 0;
-    this.minMaxQuality = 50;
+    this.maxQuality = 50;
     this.sellbyRate = -1;
   }
   if(this.name === 'Conjured Mana Cake'){
     this.degradationRate = -2;
-    this.minMaxQuality = 0;
+    this.minQuality = 0;
     this.sellbyRate = -1;
   }
 }
 
 GildedRose.prototype.tick = function () {
-  if(this.quality !== this.minMaxQuality ){
+
+  this.quality += this.degradationRate;
+  if(this.sellIn <= 0){
     this.quality += this.degradationRate;
-    if(this.sellIn <= 0){
-      this.quality += this.degradationRate;
-    }
   }
+  if(this.quality > this.maxQuality){this.quality = this.maxQuality};
+  if(this.quality < this.minQuality){this.quality = this.minQuality};
   this.sellIn += this.sellbyRate;
 
 
@@ -92,6 +94,6 @@ GildedRose.prototype.tick = function () {
       }
     }
   }*/
-}
+};
 
 export { GildedRose };
