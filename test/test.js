@@ -183,42 +183,42 @@ describe('An inventory system ...', function () {
     assert.equal(-11, item.sellIn);
   });
 
-  it.skip("test_conjured_item_before_sell_date", function () {
+  it("test_conjured_item_before_sell_date", function () {
     let item = new GildedRose(5, 10, 'Conjured Mana Cake');
     item.tick();
     assert.equal(8, item.quality);
     assert.equal(4, item.sellIn);
   });
 
-  it.skip("test_conjured_item_at_zero_quality", function () {
+  it("test_conjured_item_at_zero_quality", function () {
     let item = new GildedRose(5, 0, 'Conjured Mana Cake');
     item.tick();
     assert.equal(0, item.quality);
     assert.equal(4, item.sellIn);
   });
 
-  it.skip("test_conjured_item_on_sell_date", function () {
+  it("test_conjured_item_on_sell_date", function () {
     let item = new GildedRose(0, 10, 'Conjured Mana Cake');
     item.tick();
     assert.equal(6, item.quality);
     assert.equal(-1, item.sellIn);
   });
 
-  it.skip("test_conjured_item_on_sell_date_at_zero_quality", function () {
+  it("test_conjured_item_on_sell_date_at_zero_quality", function () {
     let item = new GildedRose(0, 0, 'Conjured Mana Cake');
     item.tick();
     assert.equal(0, item.quality);
     assert.equal(-1, item.sellIn);
   });
 
-  it.skip("test_conjured_item_after_sell_date", function () {
+  it("test_conjured_item_after_sell_date", function () {
     let item = new GildedRose(-10, 10, 'Conjured Mana Cake');
     item.tick();
     assert.equal(6, item.quality);
     assert.equal(-11, item.sellIn);
   });
 
-  it.skip("test_conjured_item_after_sell_date_at_zero_quality", function () {
+  it("test_conjured_item_after_sell_date_at_zero_quality", function () {
     let item = new GildedRose(-10, 0, 'Conjured Mana Cake');
     item.tick();
     assert.equal(0, item.quality);
