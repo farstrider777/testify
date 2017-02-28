@@ -45,6 +45,13 @@ GildedRose.prototype.degrade = function (name){
       this.quality += 1;
     }
   }
+  if(name === 'Backstage passes to a TAFKAL80ETC concert'){
+    if(this.sellIn > 10){this.quality += 1;}
+    else if(this.sellIn > 5){this.quality += 2;}
+    else if(this.sellIn > 0){this.quality += 3;}
+    else{this.quality = 0;}
+  }
+
 
 };
 
@@ -54,17 +61,6 @@ GildedRose.prototype.decreaseSellIn = function () {
 
 GildedRose.prototype.tick = function () {
   this.degrade(this.name);
-  if(this.name !== 'Backstage passes to a TAFKAL80ETC concert'){
-    this.quality += this.degradationRate;
-    if(this.sellIn <= 0){
-      this.quality += this.degradationRate;
-    }
-  }else{
-    if(this.sellIn > 10){this.quality += this.degradationRate;}
-    else if(this.sellIn > 5){this.quality += this.degradationRateMedium;}
-    else if(this.sellIn > 0){this.quality += this.degradationRateClose;}
-    else{this.quality = 0;}
-  }
   if(this.quality > this.maxQuality){this.quality = this.maxQuality;}
   if(this.quality < this.minQuality){this.quality = this.minQuality;}
   this.decreaseSellIn();
