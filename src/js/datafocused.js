@@ -1,3 +1,34 @@
+var ITEM_TYPES = {
+  'normal': {
+    degradationRate: -1,
+    minQuality: 0,
+    sellbyRate: -1,
+  },
+  'Aged Brie': {
+    degradationRate: 1,
+    maxQuality: 50,
+    sellbyRate: -1,
+  },
+  'Sulfuras, Hand of Ragnaros': {
+    degradationRate: 0,
+    minQuality: 80,
+    maxQuality: 80,
+    sellbyRate: 0,
+  },
+  'Backstage passes to a TAFKAL80ETC concert': {
+    degradationRate: 1,
+    degradationRateMedium: 2,
+    degradationRateClose: 3,
+    maxQuality: 50,
+    sellbyRate: -1,
+  },
+  'Conjured Mana Cake': {
+
+  }
+};
+
+//start trying to get it in the datatype up top then
+
 function GildedRose (sellIn, quality, name) {
   this.name = name;
   this.sellIn = sellIn;
@@ -31,6 +62,13 @@ function GildedRose (sellIn, quality, name) {
     this.sellbyRate = -1;
   }
 }
+
+/*
+GildedRose.prototype.tick = function () {
+  var rules = ITEM_TYPES[this.name]; // ITEM_TYPES.cookies
+  this.quality += rules.degradationRate;
+  if (this.quality > rules.minQuality) {}
+}*/
 
 GildedRose.prototype.tick = function () {
   if(this.name !== 'Backstage passes to a TAFKAL80ETC concert'){
