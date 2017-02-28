@@ -51,19 +51,24 @@ GildedRose.prototype.degrade = function (name){
     else if(this.sellIn > 0){this.quality += 3;}
     else{this.quality = 0;}
   }
-
-
+  if(name === 'Conjured Mana Cake'){
+    this.quality -= 2;
+    if(this.sellIn <= 0){
+      this.quality -= 2;
+    }
+  }
 };
 
-GildedRose.prototype.decreaseSellIn = function () {
-  this.sellIn += this.sellbyRate;
+GildedRose.prototype.sellDegrade = function (){
+  if(this.name !== 'Sulfuras, Hand of Ragnaros'){this.sellIn--;}
 };
 
 GildedRose.prototype.tick = function () {
   this.degrade(this.name);
   if(this.quality > this.maxQuality){this.quality = this.maxQuality;}
   if(this.quality < this.minQuality){this.quality = this.minQuality;}
-  this.decreaseSellIn();
+  //this.sellIn += this.sellbyRate;
+  this.sellDegrade();
 };
 
 export { GildedRose };
