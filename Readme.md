@@ -1,3 +1,16 @@
+###Worked on a classic programming kata###
+
+Skills practiced
+
+1. Javascript
+  * Practiced programming using a test based approach.
+  * Wrote a basic fix on master branch to meet all tests.
+  * Refactored using a function based approach in functionfocused.js
+    located in the refactoring2 branch.
+  * Refactored using a data based approach in main.js and datafocused.js.
+    located in the refactoring2 branch.
+  * Met the needs of the client listed below.
+
 Hi and welcome to team Gilded Rose.
 
 As you know, we are a small inn with a prime location in a prominent city ran
