@@ -29,72 +29,26 @@ var ITEM_TYPES = {
   }
 };
 
-//start trying to get it in the datatype up top then
-
 function GildedRose (sellIn, quality, name) {
   this.name = name;
   this.sellIn = sellIn;
   this.quality = quality;
-  // if(this.name === 'normal'){
-  //   this.degradationRate = -1;
-  //   this.minQuality = 0;
-  //   this.sellbyRate = -1;
-  // }
-  // if(this.name === 'Aged Brie'){
-  //   this.degradationRate = 1;
-  //   this.maxQuality = 50;
-  //   this.sellbyRate = -1;
-  // }
-  // if(this.name === 'Sulfuras, Hand of Ragnaros'){
-  //   this.degradationRate = 0;
-  //   this.minQuality = 80;
-  //   this.maxQuality = 80;
-  //   this.sellbyRate = 0;
-  // }
-  // if(this.name === 'Backstage passes to a TAFKAL80ETC concert'){
-  //   this.degradationRate = 1;
-  //   this.degradationRateMedium = 2;
-  //   this.degradationRateClose = 3;
-  //   this.maxQuality = 50;
-  //   this.sellbyRate = -1;
-  // }
-  // if(this.name === 'Conjured Mana Cake'){
-  //   this.degradationRate = -2;
-  //   this.minQuality = 0;
-  //   this.sellbyRate = -1;
-  // }
 }
-
 
 GildedRose.prototype.tick = function () {
   var rules = ITEM_TYPES[this.name]; // ITEM_TYPES.cookies
-  this.quality += rules.degradationRate;
-  if(this.sellIn <= 0){this.quality += rules.degradationRate;}
-
+  if(this.name !== 'Backstage passes to a TAFKAL80ETC concert'){
+    this.quality += rules.degradationRate;
+    if(this.sellIn <= 0){this.quality += rules.degradationRate;}
+  }else {
+    if(this.sellIn > 10){this.quality += rules.degradationRate;}
+    else if(this.sellIn >5){this.quality += rules.degradationRateMedium;}
+    else if(this.sellIn >0){this.quality += rules.degradationRateClose;}
+    else{this.quality = 0;}
+  }
   if (this.quality < rules.minQuality) {this.quality = rules.minQuality;}
   if (this.quality > rules.maxQuality) {this.quality = rules.maxQuality;}
   this.sellIn += rules.sellbyRate;
 };
-
-/*
-
-GildedRose.prototype.tick = function () {
-  if(this.name !== 'Backstage passes to a TAFKAL80ETC concert'){
-    this.quality += this.degradationRate;
-    if(this.sellIn <= 0){
-      this.quality += this.degradationRate;
-    }
-  }else{
-    if(this.sellIn > 10){this.quality += this.degradationRate;}
-    else if(this.sellIn > 5){this.quality += this.degradationRateMedium;}
-    else if(this.sellIn > 0){this.quality += this.degradationRateClose;}
-    else{this.quality = 0;}
-  }
-  if(this.quality > this.maxQuality){this.quality = this.maxQuality;}
-  if(this.quality < this.minQuality){this.quality = this.minQuality;}
-  this.sellIn += this.sellbyRate;
-};
-
-*/
 
 export { GildedRose };
